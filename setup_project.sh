@@ -14,6 +14,7 @@ YELLOWBACK="\033[43m"
 BLUE="\033[0;34m"
 BLUEBACK="\033[44m"
 MAGENTABACK="\033[45m"
+MAGENTA="\033[0;35m"
 
 # Check for nvm and Yarn installation
 if ! command -v nvm &> /dev/null; then
@@ -45,7 +46,7 @@ echo -e "${YELLOW}$LTS_VERSIONS${RESET}"
 echo ""  # Added spacing
 
 CURRENT_NODE_VERSION=$(node -v | sed 's/^v//')
-echo -e "\033[0;36mCurrently active Node.js version: ${MAGENTABACK}$CURRENT_NODE_VERSION${RESET}"
+echo -e "\033[0;36mCurrent active Node.js version: ${MAGENTABACK}$CURRENT_NODE_VERSION${RESET}"
 echo ""  # Added spacing
 
 # Prompt for Node.js version
@@ -58,15 +59,16 @@ if nvm ls "$NODE_VERSION" &> /dev/null; then
     INSTALLED_NODE_VERSION=$(nvm version "$NODE_VERSION" | sed 's/^v//')
     echo -e "${GREEN}Node.js version $INSTALLED_NODE_VERSION is already installed.${RESET}"
     echo ""  # Added spacing
-    echo -e "\033[0;36mCurrently active Node.js version: ${MAGENTABACK}$CURRENT_NODE_VERSION${RESET}"  # Added this line
 else
-    # Install and use the specified or latest Node.js version
+    # Install the specified or latest Node.js version
     echo -e "${GREEN}Installing Node.js version: $NODE_VERSION...${RESET}"
     nvm install "$NODE_VERSION"
-    echo ""
-    INSTALLED_NODE_VERSION=$(node -v | sed 's/^v//')
-    echo -e "${GREEN}Node.js version set to $INSTALLED_NODE_VERSION${RESET}"
 fi
+
+# Set the specified Node.js version as the default
+nvm alias default "$NODE_VERSION"
+DEFAULT_NODE_VERSION=$(nvm version default | sed 's/^v//')
+echo -e "${MAGENTA}Default Node.js version set to: $DEFAULT_NODE_VERSION${RESET}"
 
 echo ""  # Added spacing
 
@@ -123,3 +125,4 @@ echo ""  # Added spacing
 # Final setup message
 echo -e "${GREEN}Setup complete!${RESET}"
 echo -e "${CYAN}Your project is configured with Yarn, Vite, React, ExpressJS, TailwindCSS, and Sass.${RESET}"
+echo -e "${MAGENTA}Node.js version $DEFAULT_NODE_VERSION has been set as the default for all future sessions.${RESET}"
