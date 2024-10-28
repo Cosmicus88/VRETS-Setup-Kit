@@ -1,7 +1,8 @@
-# VRETS-Setup-Kit
+# React + Vite
 
-WebDev-Starter-Kit:
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-VRETS-Setup-Kit => V(ite)R(eact)E(xpressJS)T(ailwindcss)S(ass)-Setup-Kit
+Currently, two official plugins are available:
 
-A boilerplate template for building web applications using Vite, React, ExpressJS, TailwindCSS, and Sass
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
